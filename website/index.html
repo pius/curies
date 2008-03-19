@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link rel="stylesheet" href="stylesheets/screen.css" type="text/css" media="screen" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>
+      curies
+  </title>
+  <script src="javascripts/rounded_corners_lite.inc.js" type="text/javascript"></script>
+<style>
+
+</style>
+  <script type="text/javascript">
+    window.onload = function() {
+      settings = {
+          tl: { radius: 10 },
+          tr: { radius: 10 },
+          bl: { radius: 10 },
+          br: { radius: 10 },
+          antiAlias: true,
+          autoPad: true,
+          validTags: ["div"]
+      }
+      var versionBox = new curvyCorners(settings, document.getElementById("version"));
+      versionBox.applyCornersToAll();
+    }
+  </script>
+</head>
+<body>
+<div id="main">
+
+    <h1>curies</h1>
+    <div id="version" class="clickable" onclick='document.location = "http://rubyforge.org/projects/curies"; return false'>
+      <p>Get Version</p>
+      <a href="http://rubyforge.org/projects/curies" class="numbers">0.0.1</a>
+    </div>
+    <h1>&#x2192; &#8216;curies&#8217;</h1>
+
+
+	<h2>What</h2>
+
+
+	<p>Curies implements the <span class="caps">CURIE</span> syntax for expressing Compact URIs.  See http://www.w3.org/TR/curie/ for more information.</p>
+
+
+	<h2>Installing</h2>
+
+
+	<p><pre class='syntax'><span class="ident">sudo</span> <span class="ident">gem</span> <span class="ident">install</span> <span class="ident">curies</span></pre></p>
+
+
+	<h2>The basics</h2>
+
+
+	<p>In a nutshell, a <span class="caps">CURIE</span> is a compact way of representing a <span class="caps">URI</span>.  For example, suppose you&#8217;ve got an <span class="caps">XML</span> document in which 
+you&#8217;ll be writing many attributes of the form &#8220;http://www.amazon.com/?isbn=123478753&#8221;.  With a <span class="caps">CURIE</span>, you can represent those as
+&#8220;[amazon:123478753]&#8221; where &#8220;amazon&#8221; is a registered prefix in your document.</p>
+
+
+	<p>This library is small, but useful if you&#8217;re writing a parser for a language that uses CURIEs.  
+I wrote it because I&#8217;m implementing an <span class="caps">RDF</span>/JSON library and, because the <span class="caps">RDF</span>/JSON spec isn&#8217;t 
+finalized yet, I&#8217;ve taken the liberty of using CURIEs rather than QNAMEs.</p>
+
+
+	<h2>Demonstration of usage</h2>
+
+
+	<p><pre class='syntax'><span class="ident">require</span> <span class="punct">'</span><span class="string">curies</span><span class="punct">'</span></pre>
+<pre class='syntax'><span class="ident">c</span> <span class="punct">=</span> <span class="constant">Curie</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(&quot;</span><span class="string">foaf</span><span class="punct">&quot;,</span> <span class="punct">&quot;</span><span class="string">person</span><span class="punct">&quot;)</span></pre></p>
+
+
+	<p><pre class='syntax'><span class="ident">c</span><span class="punct">.</span><span class="ident">to_s</span></pre>
+<pre class='syntax'><span class="punct">=&gt;&quot;</span><span class="string">[foaf:person]</span><span class="punct">&quot;</span></pre></p>
+
+
+	<p><pre class='syntax'><span class="constant">Curie</span><span class="punct">.</span><span class="ident">parse</span> <span class="punct">&quot;</span><span class="string">[foaf:name]</span><span class="punct">&quot;</span></pre>
+<pre class='syntax'><span class="punct">&quot;</span><span class="string">http://xmlns.com/foaf/0.1/person</span><span class="punct">&quot;</span></pre></p>
+
+
+	<p><pre class='syntax'><span class="constant">Curie</span><span class="punct">.</span><span class="ident">parse</span> <span class="punct">&quot;</span><span class="string">[foo:bar]</span><span class="punct">&quot;</span></pre>
+<pre class='syntax'><span class="punct">&quot;</span><span class="string">RuntimeError: Sorry, no namespace or prefix registered for curies with the prefix foo</span><span class="punct">&quot;</span></pre>
+<pre class='syntax'><span class="constant">Curie</span><span class="punct">.</span><span class="ident">add_prefixes!</span> <span class="symbol">:foo</span> <span class="punct">=&gt;</span> <span class="punct">&quot;</span><span class="string">http://www.example.com/ns/foo/</span><span class="punct">&quot;</span></pre>
+<pre class='syntax'><span class="punct">=&gt;</span> <span class="punct">{&quot;</span><span class="string">foo</span><span class="punct">&quot;=&gt;&quot;</span><span class="string">http://www.example.com/ns/foo/</span><span class="punct">&quot;,</span> <span class="punct">&quot;</span><span class="string">foaf</span><span class="punct">&quot;=&gt;&quot;</span><span class="string">http://xmlns.com/foaf/0.1/</span><span class="punct">&quot;}</span></pre>
+<pre class='syntax'><span class="constant">Curie</span><span class="punct">.</span><span class="ident">parse</span> <span class="punct">&quot;</span><span class="string">[foo:bar]</span><span class="punct">&quot;</span></pre>
+<pre class='syntax'><span class="punct">=&gt;</span> <span class="punct">&quot;</span><span class="string">http://www.example.com/ns/foo/bar</span><span class="punct">&quot;</span></pre></p>
+
+
+	<h2>How to submit patches</h2>
+
+
+	<p>Read the <a href="http://drnicwilliams.com/2007/06/01/8-steps-for-fixing-other-peoples-code/">8 steps for fixing other people&#8217;s code</a></p>
+
+
+	<p>The trunk repository is <code>git://github.com/pius/curies.git</code> for anonymous access.</p>
+
+
+	<h2>License</h2>
+
+
+	<p>This code is free to use under the terms of the <span class="caps">MIT</span> license.</p>
+
+
+	<h2>Contact</h2>
+
+
+	<p>Comments are welcome. Send an email to <a href="mailto:&#112;&#105;&#117;&#115;&#43;&#99;&#117;&#114;&#105;&#101;&#115;&#64;&#117;&#121;i&#111;&#115;&#97;&#46;&#99;&#111;m">&#112;&#105;u&#115;&#43;&#99;&#117;&#114;&#105;&#101;&#115;&#64;u&#121;&#105;&#111;&#115;&#97;&#46;&#99;om</a>
+ email or hit me up on Github.</p>
+
+
+	<p>Pius Uzamere, The Uyiosa Corporation
+http://www.uyiosa.com</p>
+    <p class="coda">
+      <a href="FIXME email">FIXME full name</a>, 19th March 2008<br>
+      Theme extended from <a href="http://rb2js.rubyforge.org/">Paul Battley</a>
+    </p>
+</div>
+
+<!-- insert site tracking codes here, like Google Urchin -->
+
+</body>
+</html>

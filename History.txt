@@ -1,0 +1,10 @@
+== 0.5.0 2008-03-19
+
+* Initial release:
+  * Should fully implement the W3C spec [http://www.w3.org/TR/curie/]
+  * Allows the creation of CURIEs
+  * Allows the parsing of a string as a putative CURIE
+  * Allows prefixes/namespaces to be added and removed
+  * Parses both safe and unsafe CURIEs but only outputs safe CURIEs
+  * Includes the FOAF namespace loaded by default
+
