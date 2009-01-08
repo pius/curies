@@ -9,9 +9,8 @@ Gem::Specification.new do |s|
   s.date = %q{2009-01-08}
   s.description = %q{Curies implements the CURIE syntax for expressing Compact URIs.  See http://www.w3.org/TR/curie/ for more information.}
   s.email = ["pi&#117;&#115;+&#99;&#117;&#114;&#105;&#101;&#64;uyio&#115;&#97;.c&#111;&#109;"]
-  s.extra_rdoc_files = ["History.txt", "License.txt", "Manifest.txt", "README.txt", "website/index.txt"]
-  s.files = ["History.txt", "License.txt", "Manifest.txt", "README.txt", "Rakefile", "config/hoe.rb", "config/requirements.rb", "lib/curies.rb", "lib/curies/curie.rb", "lib/curies/version.rb", "log/debug.log", "script/destroy", "script/generate", "script/txt2html", "setup.rb", "spec/curies_spec.rb", "spec/spec.opts", "spec/spec_helper.rb", "tasks/deployment.rake", "tasks/environment.rake", "tasks/website.rake", "website/index.html", "website/index.txt", "website/javascripts/rounded_corners_lite.inc.js", "website/stylesheets/screen.css", "website/template.rhtml"]
-  s.has_rdoc = true
+  s.extra_rdoc_files = ["History.txt", "License.txt", "Manifest.txt", "README.txt"]
+  s.files = ["History.txt", "License.txt", "Manifest.txt", "README.txt", "Rakefile", "config/hoe.rb", "config/requirements.rb", "lib/curies.rb", "lib/curies/curie.rb", "lib/curies/version.rb", "script/destroy", "script/generate", "script/txt2html", "setup.rb", "spec/curies_spec.rb", "spec/spec.opts", "spec/spec_helper.rb", "tasks/deployment.rake", "tasks/environment.rake", "tasks/website.rake"]
   s.homepage = %q{http://curies.rubyforge.org}
   s.rdoc_options = ["--main", "README.txt"]
   s.require_paths = ["lib"]
