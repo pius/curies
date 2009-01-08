@@ -54,7 +54,7 @@ sudo gem install curies
 
 (The MIT License)
 
-Copyright (c) 2008 Pius A. Uzamere II, The Uyiosa Corporation
+Copyright (c) 2009 Pius A. Uzamere II, The Uyiosa Corporation
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

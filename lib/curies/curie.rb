@@ -1,3 +1,9 @@
+class String
+  def could_be_a_safe_curie?
+    self[0,1] == "[" and self[length - 1, length] == "]"
+  end
+end
+
 class Curie
   DEFAULT_MAPPINGS = {"cal" => "http://www.w3.org/2002/12/cal/ical#",
                       "cc" => "http://creativecommons.org/ns#",
@@ -6,7 +12,8 @@ class Curie
                       "foaf" => "http://xmlns.com/foaf/0.1/", 
                       "rdf" => "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
                       "rdfs" => "http://www.w3.org/2000/01/rdf-schema#",
-                      "xsd" => "http://www.w3.org/2001/XMLSchema#" }
+                      "xsd" => "http://www.w3.org/2001/XMLSchema#",
+                      "http" => "http" }
   @@mappings = {}
   @@mappings.merge! DEFAULT_MAPPINGS
   
@@ -15,7 +22,15 @@ class Curie
   end
 
   def self.parse(curie_string, opts = {})
-    if curie_string[0,1] == "[" and curie_string[curie_string.length - 1, curie_string.length] == "]"
+    if opts[:treat_unsafe_as_normal_strings] and not curie_string.could_be_a_safe_curie?
+      a = [curie_string, :string]
+      return a
+    end
+    if not(curie_string.index(':')) #just some random string that doesn't even have a colon!
+      #strip off brackets if they exist
+      curie_string = curie_string[1,curie_string.length-2] if curie_string.could_be_a_safe_curie?
+      return curie_string
+    elsif curie_string.could_be_a_safe_curie?
       pivot = curie_string.index(':')
       prefix = curie_string[1,pivot-1]
       reference = curie_string[pivot+1, curie_string.length].chop

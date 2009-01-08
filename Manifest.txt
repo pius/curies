@@ -6,7 +6,7 @@ Rakefile
 config/hoe.rb
 config/requirements.rb
 lib/curies.rb
-lib/curie.rb
+lib/curies/curie.rb
 lib/curies/version.rb
 log/debug.log
 script/destroy
