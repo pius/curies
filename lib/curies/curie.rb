@@ -38,7 +38,7 @@ class Curie
     return false unless other.is_a?(Curie)
     return true if self.to_s == other.to_s
   end
-
+  
   def self.parse(curie_string, opts = {})
     if opts[:treat_unsafe_as_normal_strings] and not curie_string.could_be_a_safe_curie?
       a = [curie_string, :string]
