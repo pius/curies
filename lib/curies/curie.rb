@@ -2,6 +2,16 @@ class String
   def could_be_a_safe_curie?
     self[0,1] == "[" and self[length - 1, length] == "]"
   end
+  def curie_parts
+    if self.could_be_a_safe_curie?
+      g = self.split(':')
+      a = g[0][1,g[0].length]
+      b = g[1][0,g[1].length-1]
+      [a,b]
+    else
+      raise "not a real curie"
+    end
+  end
 end
 
 class Curie
@@ -17,8 +27,16 @@ class Curie
   @@mappings = {}
   @@mappings.merge! DEFAULT_MAPPINGS
   
+  attr_reader :prefix
+  attr_reader :reference
+  
   def initialize(prefix, reference)
     @prefix, @reference = prefix, reference
+  end
+  
+  def ==(other)
+    return false unless other.is_a?(Curie)
+    return true if self.to_s == other.to_s
   end
 
   def self.parse(curie_string, opts = {})
